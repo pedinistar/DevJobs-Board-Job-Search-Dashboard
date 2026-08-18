@@ -1,9 +1,10 @@
+import Header from "./components/Header";
 import JobsList from "./components/JobsList";
 
 export default function App() {
   return (
     <div>
-      <h1>Job Board</h1>
+      <Header />
       <JobsList />
     </div>
   );
