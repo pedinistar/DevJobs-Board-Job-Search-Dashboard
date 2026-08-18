@@ -1,9 +1,10 @@
-import { Button } from "./components/ui/button";
+import JobsList from "./components/JobsList";
 
 export default function App() {
   return (
     <div>
-      <Button variant="secondary">Add to cart</Button>
+      <h1>Job Board</h1>
+      <JobsList />
     </div>
   );
 }
