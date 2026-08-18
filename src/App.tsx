@@ -1,3 +1,9 @@
+import { Button } from "./components/ui/button";
+
 export default function App() {
-  return <div>App</div>;
+  return (
+    <div>
+      <Button variant="secondary">Add to cart</Button>
+    </div>
+  );
 }
