@@ -11,7 +11,7 @@ export default function JobsList() {
   }));
 
   return (
-    <div>
+    <div className="m-4">
       {jobs.map((job) => (
         <JobCard key={job.slug} job={job} />
       ))}
