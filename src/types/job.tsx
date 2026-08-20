@@ -10,3 +10,9 @@ export type JobDataTypes = {
   location: string;
   created_at: number;
 };
+
+export type FetchState =
+  | { state: "idle" }
+  | { state: "loading" }
+  | { state: "success"; data: JobDataTypes[] }
+  | { state: "error"; error: string };
