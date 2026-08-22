@@ -1,0 +1,14 @@
+import jobs from "./data/jobs";
+import JobCard from "./components/JobCard";
+
+const App = () => {
+  return (
+    <div>
+      {jobs.map((job) => (
+        <JobCard key={job.id} job={job} />
+      ))}
+    </div>
+  );
+};
+
+export default App;
