@@ -5,20 +5,21 @@ import SearchBar from "./components/SearchBar";
 import LocationFilter from "./components/LocationFilter";
 import JobTypeFilter from "./components/JobTypeFilter";
 import RemoteFilter from "./components/RemoteFilter";
+import JobDetails from "./components/JobDetails";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
   const [jobType, setJobType] = useState("");
   const [isRemote, setIsRemote] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
 
   const filteredJobs = jobs.filter(
     (job) =>
-      (job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        job.location.toLowerCase().includes(location.toLowerCase()) &&
-        job.jobType.toLowerCase().includes(jobType.toLowerCase()) &&
-        !isRemote) ||
-      job.remote,
+      job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      job.location.toLowerCase().includes(location.toLowerCase()) &&
+      job.jobType.toLowerCase().includes(jobType.toLowerCase()) &&
+      (!isRemote || job.remote),
   );
 
   return (
@@ -31,9 +32,14 @@ const App = () => {
 
       <RemoteFilter isRemote={isRemote} setIsRemote={setIsRemote} />
 
+      {/* null is used cz if selected job is null then jobdetails wont be visible while it it was {} its still an empty object thus would have made bugs */}
+      {selectedJob && (
+        <JobDetails selectedJob={selectedJob} setSelectedJob={setSelectedJob} />
+      )}
+
       <div>
         {filteredJobs.map((job) => (
-          <JobCard key={job.id} job={job} />
+          <JobCard key={job.id} job={job} setSelectedJob={setSelectedJob} />
         ))}
       </div>
     </div>

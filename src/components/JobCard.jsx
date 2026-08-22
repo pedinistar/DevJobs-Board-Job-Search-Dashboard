@@ -1,6 +1,6 @@
 import { IoLocationSharp } from "react-icons/io5";
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, setSelectedJob }) => {
   return (
     <div className="border rounded max-w-100 p-4">
       <h3>{job.title}</h3>
@@ -14,7 +14,9 @@ const JobCard = ({ job }) => {
       </div>
       <p>{job.description.slice(0, 50) + "..."}</p>
       <div>
-        <button className="btn">View Details</button>
+        <button onClick={() => setSelectedJob(job)} className="btn">
+          View Details
+        </button>
         <button>Save Job</button>
       </div>
     </div>
