@@ -3,15 +3,18 @@ import JobCard from "./components/JobCard";
 import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import LocationFilter from "./components/LocationFilter";
+import JobTypeFilter from "./components/JobTypeFilter";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
+  const [jobType, setJobType] = useState("");
 
   const filteredJobs = jobs.filter(
     (job) =>
       job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      job.location.toLowerCase().includes(location.toLowerCase()),
+      job.location.toLowerCase().includes(location.toLowerCase()) &&
+      job.jobType.toLowerCase().includes(jobType.toLowerCase()),
   );
 
   return (
@@ -19,6 +22,8 @@ const App = () => {
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       <LocationFilter location={location} setLocation={setLocation} />
+
+      <JobTypeFilter jobType={jobType} setJobType={setJobType} />
 
       <div>
         {filteredJobs.map((job) => (
