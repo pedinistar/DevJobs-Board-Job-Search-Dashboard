@@ -1,6 +1,6 @@
 import jobs from "./data/jobs";
 import JobCard from "./components/JobCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import LocationFilter from "./components/LocationFilter";
 import JobTypeFilter from "./components/JobTypeFilter";
@@ -13,7 +13,19 @@ const App = () => {
   const [jobType, setJobType] = useState("");
   const [isRemote, setIsRemote] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
-  const [savedJobs, setSavedJobs] = useState([]);
+
+  const [savedJobs, setSavedJobs] = useState(() => {
+    const savedJobsJSON = localStorage.getItem("savedJobs");
+
+    return savedJobsJSON ? JSON.parse(savedJobsJSON) : [];
+  });
+
+  // React state → localStorage
+  useEffect(() => {
+    const savedJobsJSON = JSON.stringify(savedJobs);
+
+    localStorage.setItem("savedJobs", savedJobsJSON);
+  }, [savedJobs]);
 
   const saveJob = (job) => {
     const alreadySaved = savedJobs.some((savedJob) => savedJob.id === job.id);
