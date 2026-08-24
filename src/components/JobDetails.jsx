@@ -1,3 +1,4 @@
+import { GoArrowRight } from "react-icons/go";
 import { IoClose } from "react-icons/io5";
 
 const JobDetails = ({ selectedJob, setSelectedJob }) => {
@@ -17,8 +18,10 @@ const JobDetails = ({ selectedJob, setSelectedJob }) => {
 
         <p>{selectedJob.description}</p>
 
-        <button>Apply</button>
-        <button>Save Job</button>
+        <button className="flex items-center gap-2">
+          <p>Apply</p>
+          <GoArrowRight />
+        </button>
       </div>
     </div>
   );

@@ -13,6 +13,15 @@ const App = () => {
   const [jobType, setJobType] = useState("");
   const [isRemote, setIsRemote] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
+  const [savedJobs, setSavedJobs] = useState([]);
+
+  const saveJob = (job) => {
+    const alreadySaved = savedJobs.some((savedJob) => savedJob.id === job.id);
+
+    if (!alreadySaved) {
+      setSavedJobs([...savedJobs, job]);
+    }
+  };
 
   const filteredJobs = jobs.filter(
     (job) =>
@@ -26,6 +35,8 @@ const App = () => {
     <div>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
+      <p>Saved jobs: {savedJobs.length}</p>
+
       <LocationFilter location={location} setLocation={setLocation} />
 
       <JobTypeFilter jobType={jobType} setJobType={setJobType} />
@@ -34,12 +45,20 @@ const App = () => {
 
       {/* null is used cz if selected job is null then jobdetails wont be visible while it it was {} its still an empty object thus would have made bugs */}
       {selectedJob && (
-        <JobDetails selectedJob={selectedJob} setSelectedJob={setSelectedJob} />
+        <JobDetails
+          selectedJob={selectedJob}
+          setSelectedJob={setSelectedJob}
+          saveJob={saveJob}
+        />
       )}
-
       <div>
         {filteredJobs.map((job) => (
-          <JobCard key={job.id} job={job} setSelectedJob={setSelectedJob} />
+          <JobCard
+            key={job.id}
+            job={job}
+            setSelectedJob={setSelectedJob}
+            saveJob={saveJob}
+          />
         ))}
       </div>
     </div>
