@@ -6,6 +6,7 @@ import LocationFilter from "./components/LocationFilter";
 import JobTypeFilter from "./components/JobTypeFilter";
 import RemoteFilter from "./components/RemoteFilter";
 import JobDetails from "./components/JobDetails";
+import SavedJobs from "./components/SavedJobs";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,6 +36,13 @@ const App = () => {
     }
   };
 
+  const removeSavedJob = (removeJob) => {
+    const newArr = savedJobs.filter(
+      (currentJob) => currentJob.id !== removeJob.id,
+    );
+    setSavedJobs(newArr);
+  };
+
   const filteredJobs = jobs.filter(
     (job) =>
       job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -45,6 +53,8 @@ const App = () => {
 
   return (
     <div>
+      <SavedJobs savedJobs={savedJobs} removeSavedJob={removeSavedJob} />
+
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       <p>Saved jobs: {savedJobs.length}</p>
@@ -69,7 +79,9 @@ const App = () => {
             key={job.id}
             job={job}
             setSelectedJob={setSelectedJob}
+            savedJobs={savedJobs}
             saveJob={saveJob}
+            isSavedPage={false}
           />
         ))}
       </div>

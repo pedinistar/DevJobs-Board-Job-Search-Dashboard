@@ -1,9 +1,19 @@
 import { IoLocationSharp } from "react-icons/io5";
 
-const JobCard = ({ job, saveJob, setSelectedJob }) => {
+const JobCard = ({
+  job,
+  saveJob,
+  setSelectedJob,
+  removeSavedJob,
+  isSavedPage,
+  savedJobs,
+}) => {
+  const isAlreadySaved = savedJobs.some(
+    (currentJob) => currentJob.id === job.id,
+  );
   return (
-    <div className="border rounded max-w-100 p-4">
-      <h3>{job.title}</h3>
+    <div className="border rounded max-w-100 p-4 space-y-2">
+      <h3 className="font-bold text-lg">{job.title}</h3>
 
       <em>{job.company}</em>
 
@@ -21,7 +31,13 @@ const JobCard = ({ job, saveJob, setSelectedJob }) => {
       <div>
         <button onClick={() => setSelectedJob(job)}>View Details</button>
 
-        <button onClick={() => saveJob(job)}>Save Job</button>
+        {isSavedPage ? (
+          <button onClick={() => removeSavedJob(job)}>Remove Job</button>
+        ) : isAlreadySaved ? (
+          <button type="disabled">Saved</button>
+        ) : (
+          <button onClick={() => saveJob(job)}>Save Job</button>
+        )}
       </div>
     </div>
   );
