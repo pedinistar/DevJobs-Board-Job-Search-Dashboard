@@ -1,18 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchJobs } from "./api/jobsAPI";
+import { normalizeJob } from "./utils/normalizeJob";
+import JobCard from "./components/JobCard";
 
 const App = () => {
+  const [jobs, setJobs] = useState([]);
+
   useEffect(() => {
     async function loadJobs() {
-      const data = await fetchJobs();
+      const response = await fetchJobs();
 
-      console.log(data);
-      console.log(data.data);
+      const normalizedJobs = response.data.map(normalizeJob);
+
+      setJobs(normalizedJobs);
+
+      console.log(normalizedJobs);
     }
 
     loadJobs();
   }, []);
-  return <h1>DevJobs Board</h1>;
+  return (
+    <div>
+      <h1>DevJobs Board</h1>
+
+      {jobs.map((job) => (
+        <JobCard key={job.id} job={job} />
+      ))}
+    </div>
+  );
 };
 
 export default App;
