@@ -2,9 +2,16 @@ import { useEffect, useState } from "react";
 import { fetchJobs } from "./api/jobsAPI";
 import { normalizeJob } from "./utils/normalizeJob";
 import JobList from "./components/JobList";
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const filteredJobs = jobs.filter(
+    (job) =>
+      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.company.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   useEffect(() => {
     async function loadJobs() {
@@ -21,7 +28,9 @@ const App = () => {
     <div>
       <h1>DevJobs Board</h1>
 
-      <JobList jobs={jobs} />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
+      <JobList jobs={filteredJobs} />
     </div>
   );
 };
