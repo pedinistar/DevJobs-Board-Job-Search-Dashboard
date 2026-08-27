@@ -6,7 +6,11 @@ export function normalizeJob(job) {
     description: job.description,
     location: job.location || "Location not specified",
     remote: job.remote,
-    jobTypes: job.job_types || [],
+    jobTypes: Array.isArray(job.job_types)
+      ? job.job_types
+      : job.job_types
+        ? Object.values(job.job_types)
+        : [],
     tags: job.tags || [],
     url: job.url,
     createdAt: job.created_at,

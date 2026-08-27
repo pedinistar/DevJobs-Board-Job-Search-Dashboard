@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchJobs } from "./api/jobsAPI";
 import { normalizeJob } from "./utils/normalizeJob";
-import JobCard from "./components/JobCard";
+import JobList from "./components/JobList";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -13,8 +13,6 @@ const App = () => {
       const normalizedJobs = response.data.map(normalizeJob);
 
       setJobs(normalizedJobs);
-
-      console.log(normalizedJobs);
     }
 
     loadJobs();
@@ -23,9 +21,7 @@ const App = () => {
     <div>
       <h1>DevJobs Board</h1>
 
-      {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
-      ))}
+      <JobList jobs={jobs} />
     </div>
   );
 };
