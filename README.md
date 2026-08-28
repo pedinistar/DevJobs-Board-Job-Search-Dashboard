@@ -6,18 +6,17 @@ Job data is fetched from the **Arbeitnow Job Board API** and normalized before b
 
 ## Features
 
-* 🔎 Search jobs by title or company
-* 📍 Filter jobs by location
-* 💼 Filter jobs by job type
-* 🌐 Filter for remote positions
-* 🔖 Save and remove bookmarked jobs
-* 💾 Persist saved jobs using `localStorage`
-* 📄 View detailed job information in a modal
-* 📑 Paginate through job listings
-* ⚠️ Handle API errors with a retry option
-* 🔍 Display an empty state when no jobs match the filters
-* 📱 Responsive layout for different screen sizes
-* ⌨️ `Ctrl + K` / `Cmd + K` shortcut to focus the search bar
+* Search jobs by title or company
+* Filter jobs by location
+* Filter jobs by job type
+* Filter for remote positions
+* Save and remove bookmarked jobs
+* Persist saved jobs using `localStorage`
+* View detailed job information in a modal
+* Paginate through job listings
+* Handle API errors with a retry option
+* Display an empty state when no jobs match the filters
+* Responsive layout for different screen sizes
 
 ## Tech Stack
 
@@ -108,7 +107,7 @@ Make sure you have **Node.js** and **npm** installed.
 1. Clone the repository:
 
 ```bash
-git clone <https://github.com/pedinistar/DevJobs-Board-Job-Search-Dashboard.git>
+git clone https://github.com/pedinistar/DevJobs-Board-Job-Search-Dashboard.git
 ```
 
 2. Navigate to the project directory:
@@ -161,11 +160,5 @@ This project was built to practice and demonstrate:
 
 ## Links
 
-* **Live Demo:** [(https://devjobs-job-search-dashboard.vercel.app/)]
-* **GitHub Repository:** [(https://github.com/pedinistar/DevJobs-Board-Job-Search-Dashboard)]
-
-## Author
-
-**Jayashree Pedini**
-
-Junior Frontend Developer focused on React.js and modern frontend development.
+* **Live Demo:** [https://devjobs-job-search-dashboard.vercel.app/]
+* **GitHub Repository:** [https://github.com/pedinistar/DevJobs-Board-Job-Search-Dashboard]
