@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JobCard from "./JobCard";
 import { AlertCircle, Search, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -13,6 +13,10 @@ const JobList = ({
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 6;
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [jobs]);
 
   // Pagination Logic
   const totalPages = Math.ceil(jobs.length / jobsPerPage) || 1;

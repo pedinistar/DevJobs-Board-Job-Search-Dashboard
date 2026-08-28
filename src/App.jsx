@@ -6,7 +6,6 @@ import SearchBar from "./components/SearchBar";
 import Filters from "./components/Filters";
 import JobModal from "./components/JobModal";
 import Navbar from "./components/Navbar";
-import { AlertCircle } from "lucide-react";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -137,14 +136,6 @@ const App = () => {
                 <strong className="text-white">{filteredJobs.length}</strong>{" "}
                 {showBookmarks ? "saved jobs" : "open roles"}
               </span>
-
-              <button
-                onClick={() => setHasError(!hasError)}
-                className="flex items-center gap-1.5 text-gray-500 hover:text-gray-300"
-              >
-                <AlertCircle className="h-3.5 w-3.5" />
-                Demo error state
-              </button>
             </div>
 
             <JobList

@@ -1,4 +1,4 @@
-import { Briefcase, Sun, Bookmark } from "lucide-react";
+import { Briefcase, Bookmark } from "lucide-react";
 
 const Navbar = ({ showBookmarks, setShowBookmarks, bookmarkedCount }) => {
   return (
@@ -29,10 +29,6 @@ const Navbar = ({ showBookmarks, setShowBookmarks, bookmarkedCount }) => {
           <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs font-semibold text-gray-300">
             {bookmarkedCount}
           </span>
-        </button>
-
-        <button className="rounded-lg p-2 text-gray-400 hover:bg-gray-800 hover:text-white">
-          <Sun className="h-5 w-5" />
         </button>
       </div>
     </header>

@@ -75,8 +75,8 @@ const Filters = ({
             className="w-full appearance-none rounded-lg border border-gray-800 bg-gray-950 py-2.5 pl-3 pr-8 text-sm text-gray-200 transition focus:border-gray-700 focus:outline-none"
           >
             <option value="">All types</option>
-            <option value="Full time">Full time</option>
-            <option value="Part time">Part time</option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
             <option value="Contract">Contract</option>
             <option value="Internship">Internship</option>
             <option value="Freelance">Freelance</option>

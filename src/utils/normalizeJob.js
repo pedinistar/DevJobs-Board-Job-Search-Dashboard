@@ -3,7 +3,7 @@ function normalizeJobTypes(jobTypes) {
     return [];
   }
 
-  const types = jobTypes.map((type) => type.toLowerCase());
+  const types = jobTypes.map((type) => String(type).toLowerCase());
 
   const result = [];
 
@@ -39,16 +39,14 @@ export function normalizeJob(job) {
 
   return {
     id: job.slug,
-    title: job.title,
-    company: job.company_name,
-    description: job.description,
+    title: job.title || "Untitled role",
+    company: job.company_name || "Unknown company",
+    description: job.description || "No description available.",
     location: job.location || "Location not specified",
-    remote: job.remote,
-
+    remote: Boolean(job.remote),
     jobTypes: normalizeJobTypes(rawJobTypes),
-
-    tags: job.tags || [],
-    url: job.url,
+    tags: Array.isArray(job.tags) ? job.tags : [],
+    url: job.url || "",
     createdAt: job.created_at,
   };
 }
