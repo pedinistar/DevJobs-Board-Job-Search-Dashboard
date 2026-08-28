@@ -11,6 +11,8 @@ const App = () => {
   const [isRemote, setIsRemote] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState("");
   const locations = [...new Set(jobs.map((job) => job.location))];
+  const [selectedJobType, setSelectedJobType] = useState("");
+  const [selectedJob, setSelectedJob] = useState(null);
 
   const filteredJobs = jobs.filter((job) => {
     const matchesSearch =
@@ -23,7 +25,10 @@ const App = () => {
     const matchesLocation =
       !selectedLocation || job.location === selectedLocation;
 
-    return matchesSearch && matchesRemote && matchesLocation;
+    const matchesJobType =
+      !selectedJobType || job.jobTypes.includes(selectedJobType);
+
+    return matchesSearch && matchesRemote && matchesLocation && matchesJobType;
   });
 
   useEffect(() => {
@@ -49,9 +54,11 @@ const App = () => {
         selectedLocation={selectedLocation}
         setSelectedLocation={setSelectedLocation}
         locations={locations}
+        selectedJobType={selectedJobType}
+        setSelectedJobType={setSelectedJobType}
       />
 
-      <JobList jobs={filteredJobs} />
+      <JobList jobs={filteredJobs} setSelectedJob={setSelectedJob} />
     </div>
   );
 };

@@ -27,7 +27,7 @@ const JobCard = ({ job }) => {
             key={type}
             className="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
           >
-            {type}hi
+            {type}
           </span>
         ))}
       </div>

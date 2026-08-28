@@ -4,17 +4,23 @@ const Filters = ({
   selectedLocation,
   setSelectedLocation,
   locations,
+  selectedJobType,
+  setSelectedJobType,
 }) => {
   return (
     <div>
       Filters
-      <input
-        id="remoteCheckbox"
-        type="checkbox"
-        checked={isRemote}
-        onChange={(e) => setIsRemote(e.target.checked)}
-      />
-      <label htmlFor="remoteCheckbox">Remote</label>
+      {/* Remote Filter */}
+      <div>
+        <input
+          id="remoteCheckbox"
+          type="checkbox"
+          checked={isRemote}
+          onChange={(e) => setIsRemote(e.target.checked)}
+        />
+        <label htmlFor="remoteCheckbox">Remote</label>
+      </div>
+      {/* Location Filter */}
       <select
         name="location"
         id="location"
@@ -28,6 +34,20 @@ const Filters = ({
             {location}
           </option>
         ))}
+      </select>
+      {/* Job Type Filter */}
+      <select
+        name="jobType"
+        id="jobType"
+        value={selectedJobType}
+        onChange={(e) => setSelectedJobType(e.target.value)}
+      >
+        <option value="">All Job Types</option>
+        <option value="Full Time">Full Time</option>
+        <option value="Part Time">Part Time</option>
+        <option value="Internship">Internship</option>
+        <option value="Contract">Contract</option>
+        <option value="Freelance">Freelance</option>
       </select>
     </div>
   );
