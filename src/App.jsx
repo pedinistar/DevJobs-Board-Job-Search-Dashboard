@@ -5,6 +5,7 @@ import JobList from "./components/JobList";
 import SearchBar from "./components/SearchBar";
 import Filters from "./components/Filters";
 import JobModal from "./components/JobModal";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -19,6 +20,7 @@ const App = () => {
     return saved ? JSON.parse(saved) : [];
   });
   const [showBookmarks, setShowBookmarks] = useState(false);
+  const bookmarkedCount = bookmarkedJobs.length;
 
   useEffect(() => {
     localStorage.setItem("bookmarkedJobs", JSON.stringify(bookmarkedJobs));
@@ -67,6 +69,12 @@ const App = () => {
   return (
     <div>
       <h1>DevJobs Board</h1>
+
+      <Navbar
+        showBookmarks={showBookmarks}
+        setShowBookmarks={setShowBookmarks}
+        bookmarkedCount={bookmarkedCount}
+      />
 
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
