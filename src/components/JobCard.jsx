@@ -1,6 +1,9 @@
-const JobCard = ({ job }) => {
+const JobCard = ({ job, onClick }) => {
   return (
-    <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+    <article
+      onClick={onClick}
+      className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+    >
       <div className="mb-4">
         <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
           {job.company}

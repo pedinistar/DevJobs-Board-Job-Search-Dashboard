@@ -4,6 +4,7 @@ import { normalizeJob } from "./utils/normalizeJob";
 import JobList from "./components/JobList";
 import SearchBar from "./components/SearchBar";
 import Filters from "./components/Filters";
+import JobModal from "./components/JobModal";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -13,6 +14,15 @@ const App = () => {
   const locations = [...new Set(jobs.map((job) => job.location))];
   const [selectedJobType, setSelectedJobType] = useState("");
   const [selectedJob, setSelectedJob] = useState(null);
+  const [bookmarkedJobs, setBookmarkedJobs] = useState(() => {
+    const saved = localStorage.getItem("bookmarkedJobs");
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [showBookmarks, setShowBookmarks] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("bookmarkedJobs", JSON.stringify(bookmarkedJobs));
+  }, [bookmarkedJobs]);
 
   const filteredJobs = jobs.filter((job) => {
     const matchesSearch =
@@ -30,6 +40,18 @@ const App = () => {
 
     return matchesSearch && matchesRemote && matchesLocation && matchesJobType;
   });
+
+  const toggleBookmark = (job) => {
+    setBookmarkedJobs((prev) => {
+      const alreadyBookmarked = prev.some((savedJob) => savedJob.id === job.id);
+
+      if (alreadyBookmarked) {
+        return prev.filter((savedJob) => savedJob.id !== job.id);
+      }
+
+      return [...prev, job];
+    });
+  };
 
   useEffect(() => {
     async function loadJobs() {
@@ -56,6 +78,13 @@ const App = () => {
         locations={locations}
         selectedJobType={selectedJobType}
         setSelectedJobType={setSelectedJobType}
+      />
+
+      <JobModal
+        selectedJob={selectedJob}
+        onClose={() => setSelectedJob(null)}
+        bookmarkedJobs={bookmarkedJobs}
+        toggleBookmark={toggleBookmark}
       />
 
       <JobList jobs={filteredJobs} setSelectedJob={setSelectedJob} />
