@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fetchJobs } from "./api/jobsAPI";
 import { normalizeJob } from "./utils/normalizeJob";
 import JobList from "./components/JobList";
@@ -44,7 +44,9 @@ const App = () => {
     loadJobs();
   }, []);
 
-  const locations = [...new Set(jobs.map((job) => job.location))];
+  const locations = useMemo(() => {
+    return [...new Set(jobs.map((job) => job.location))].filter(Boolean);
+  }, [jobs]);
 
   const activeJobs = showBookmarks ? bookmarkedJobs : jobs;
 
